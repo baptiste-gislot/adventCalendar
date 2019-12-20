@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div class="container" @click="isClickable()">
     <div v-bind:key="day.id" v-for="day in days">
-      <Day :day="day" />
+      <Day :day="day" v-bind:class="{notClickable : isClickable(day)}" />
     </div>
   </div>
 </template>
@@ -14,7 +14,23 @@ export default {
   components: {
     Day
   },
-  props: ["days"]
+  props: ["days"],
+  data() {
+    return {
+      not_Clickable: false,
+    }
+  },
+  methods: {
+    isClickable(day) {
+      let date = new Date();
+      let numOfTOday = String(date.getDate()).padStart(2, '0');
+      if (day < numOfTOday) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 }
 </script>
 
@@ -24,5 +40,9 @@ export default {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.notClickable {
+  pointer-events: none;
 }
 </style>
