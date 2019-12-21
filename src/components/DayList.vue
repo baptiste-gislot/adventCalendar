@@ -1,7 +1,7 @@
 <template>
   <div class="container" @click="isClickable()">
     <div v-bind:key="day.id" v-for="day in days">
-      <Day :day="day" v-bind:class="{notClickable : isClickable(day)}" />
+      <Day :day="day" v-bind:class="{notClickable : isClickable(day.id)}" />
     </div>
   </div>
 </template>
@@ -25,9 +25,9 @@ export default {
       let date = new Date();
       let numOfTOday = String(date.getDate()).padStart(2, '0');
       if (day < numOfTOday) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     }
   }
