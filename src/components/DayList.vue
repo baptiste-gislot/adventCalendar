@@ -24,7 +24,7 @@ export default {
     isClickable(day) {
       let date = new Date();
       let numOfTOday = String(date.getDate()).padStart(2, '0');
-      if (day < numOfTOday) {
+      if (day <= numOfTOday) {
         return false;
       } else {
         return true;
